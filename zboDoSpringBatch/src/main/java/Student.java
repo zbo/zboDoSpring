@@ -1,3 +1,7 @@
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+
 /**
  * Created by twer on 14-10-2.
  */

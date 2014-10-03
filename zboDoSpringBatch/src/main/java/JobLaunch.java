@@ -16,10 +16,7 @@ public class JobLaunch {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("batch.xml");
         JobLauncher launcher = (JobLauncher) context.getBean("jobLauncher");
-        //Job job = (Job) context.getBean("helloWorldJob");
         Job job = (Job) context.getBean("csvJob");
-        //FlatFileItemWriter writer= (FlatFileItemWriter) context.getBean("csvItemWriter");
-
         try {
             /* 运行Job */
             JobExecution result = launcher.run(job, new JobParameters());
