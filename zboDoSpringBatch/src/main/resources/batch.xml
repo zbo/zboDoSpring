@@ -17,6 +17,14 @@ http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
             <tasklet ref="world" transaction-manager="transactionManager"></tasklet>
         </step>
     </job>
+    <job id="csvJob">
+        <step id="csvStep">
+            <tasklet transaction-manager="transactionManager">
+                <chunk reader="csvItemReader" writer="csvItemWriter" processor="CsvItemProcessor" commit-interval="1">
+                </chunk>
+            </tasklet>
+        </step>
+    </job>
 
     <bean:bean id="hello" class="WriteTasklet">
         <bean:property name="message" value="Hello "></bean:property>
@@ -25,4 +33,53 @@ http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
     <bean:bean id="world" class="WriteTasklet">
         <bean:property name="message" value=" World!"></bean:property>
     </bean:bean>
+
+    <bean:bean id="csvItemReader"
+               class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+        <bean:property name="resource" value="classpath:inputFile.csv"/>
+        <bean:property name="lineMapper">
+            <bean:bean
+                    class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <bean:property name="lineTokenizer" ref="lineTokenizer"/>
+                <bean:property name="fieldSetMapper">
+                    <bean:bean
+                            class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+                        <bean:property name="prototypeBeanName" value="student"></bean:property>
+                    </bean:bean>
+                </bean:property>
+            </bean:bean>
+        </bean:property>
+    </bean:bean>
+
+    <bean:bean id="student" class="Student"></bean:bean>
+    <bean:bean id="CsvItemProcessor" class="CsvItemProcessor"></bean:bean>
+    <!-- lineTokenizer -->
+    <bean:bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+        <bean:property name="delimiter" value=","/>
+        <bean:property name="names">
+            <bean:list>
+                <bean:value>ID</bean:value>
+                <bean:value>name</bean:value>
+                <bean:value>age</bean:value>
+                <bean:value>score</bean:value>
+            </bean:list>
+        </bean:property>
+    </bean:bean>
+    <bean:bean id="csvItemWriter"
+               class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+        <bean:property name="resource" value="file:./zboDoSpringBatch/src/outputFile.csv"/>
+        <bean:property name="lineAggregator">
+            <bean:bean
+                    class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+                <bean:property name="delimiter" value=","></bean:property>
+                <bean:property name="fieldExtractor">
+                    <bean:bean
+                            class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+                        <bean:property name="names" value="name,age,score"></bean:property>
+                    </bean:bean>
+                </bean:property>
+            </bean:bean>
+        </bean:property>
+    </bean:bean>
+
 </bean:beans>
