@@ -1,4 +1,4 @@
-package userDomain;
+package userDomainNoSpring;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

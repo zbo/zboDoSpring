@@ -1,4 +1,4 @@
-package userDomain;
+package userDomainNoSpring;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

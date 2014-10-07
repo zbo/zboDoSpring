@@ -1,4 +1,4 @@
-package userDomain;
+package userDomainNoSpring;
 
 public class UserServiceImpl implements UserService {
 

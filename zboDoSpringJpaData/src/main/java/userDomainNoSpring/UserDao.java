@@ -1,4 +1,4 @@
-package userDomain;
+package userDomainNoSpring;
 
 /**
  * Created by twer on 14-10-6.
