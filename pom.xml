@@ -10,9 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>zboDoSpringBatch</module>
-        <module>zboDoSome</module>
+        <module>zboDoOthers</module>
         <module>zboDoSpringData</module>
+        <module>zboDoSpringJpaData</module>
     </modules>
-
-
 </project>
