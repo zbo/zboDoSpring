@@ -1,1 +1,2 @@
-ansible vagrant -i ../hosts -m ping
+#!/bin/sh
+ansible vbox -i ../hosts -m ping
