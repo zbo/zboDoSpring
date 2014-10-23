@@ -12,8 +12,10 @@ public class TableDroperImpl {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("zboUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.createNativeQuery("drop table accountinfo").executeUpdate();
-        em.createNativeQuery("drop table userinfo").executeUpdate();
+        em.createNativeQuery("drop table ACCOUNTINFO").executeUpdate();
+        em.createNativeQuery("drop table USERINFO").executeUpdate();
+        em.createNativeQuery("drop table CREDITCARDINFO").executeUpdate();
+        em.createNativeQuery("drop table ACCOUNTINFO_CREDITCARDINFO").executeUpdate();
         em.getTransaction().commit();
         emf.close();
     }

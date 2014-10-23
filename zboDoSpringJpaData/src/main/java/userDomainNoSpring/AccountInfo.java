@@ -12,12 +12,17 @@ public class AccountInfo implements Serializable {
     @OneToOne
     private UserInfo Userinfo;
 
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @OneToMany(cascade ={CascadeType.MERGE, CascadeType.PERSIST})
     private List<CreditCardInfo> CreditCardInfos;
 
     private String AccountType;
 
     public AccountInfo() {
+    }
+
+    public AccountInfo(String accountType, UserInfo userInfo) {
+        this.AccountType = accountType;
+        this.Userinfo = userInfo;
     }
 
     @Id

@@ -1,0 +1,2 @@
+export PATH=$PATH:/home/zbo/Downloads/node-v0.10.32-linux-x64/bin
+alias gnode='cd /home/zbo/Downloads/node-v0.10.32-linux-x64/bin'

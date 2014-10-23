@@ -17,4 +17,8 @@ public class UserServiceImpl implements UserService {
         accountInfo.setUserinfo(userInfo);
         return userDao.saveAccount(accountInfo);
     }
+
+    public UserInfo findUserByID(String id) {
+        return userDao.findUser(id);
+    }
 }
